@@ -2,6 +2,15 @@
 /* Look over this data, then proceed to line 91*/
 const data = [
   {
+    title: 'Breaking, Lambda Student Makes It Work',
+    date: 'Oct 8th, 2019',
+    firstParagraph: `What did `,
+
+    secondParagraph: `You `,
+
+    thirdParagraph: `Expect`
+  },
+  {
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
@@ -112,3 +121,56 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+
+const articles = document.querySelector('.articles');
+// create new article and append it to the parentNode
+data.forEach(item => {
+  articles.appendChild(createArticles(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph));
+})
+
+
+function createArticles(title, date, firstPara, secondPara, thirdPara) {
+  //Main div class article
+  const article = document.createElement('div');
+  article.classList.add('article');
+
+  //Title 
+  const header = document.createElement('h2');
+
+  // P 
+  const paraDate = document.createElement('p');
+  paraDate.classList.add('date');
+
+
+  //P tags
+  const firstParagraph = document.createElement('p');
+  const secondParagraph = document.createElement('p');
+  const thirdParagraph = document.createElement('p');
+  const span = document.createElement('span');
+
+
+  // Append child elements
+  article.appendChild(header);
+  article.appendChild(paraDate);
+  article.appendChild(firstParagraph);
+  article.appendChild(secondParagraph);
+  article.appendChild(thirdParagraph);
+  article.appendChild(span);
+
+  // TextContent for the elements
+  header.textContent = title;
+  paraDate.textContent = date;
+  firstParagraph.textContent = firstPara;
+  secondParagraph.textContent = secondPara;
+  thirdParagraph.textContent = thirdPara;
+  span.textContent = 'Click Here';
+
+  //expand button
+  span.classList.add('expandButton');
+  // EventListener toggle class article-open.
+  span.addEventListener('click', () => article.classList.toggle('article-open'));
+
+  return article;
+
+}
